@@ -33,6 +33,7 @@ class PrimeThread
         }//end isRunning
         void run()
         {
+	    running = true;
             std::thread t (removeMultiples, classIndex);
             t.join();
             running = false;
@@ -43,7 +44,6 @@ class PrimeThread
 int main()
 {
     auto start = high_resolution_clock::now();
-
     primeSieve();
     int count = 0;
     for(int i = 0; i < LIMIT; i++)
@@ -63,14 +63,14 @@ void primeSieve()
 {
     //bool *isPrime = new bool[LIMIT];
     std::fill_n(isPrime, LIMIT, true);
-    PrimeThread* first;
-    PrimeThread second;
-    PrimeThread third;
-    PrimeThread fourth;
-    PrimeThread fifth;
-    PrimeThread sixth;
-    PrimeThread seventh;
-    PrimeThread eighth;
+    PrimeThread* first = new PrimeThread();
+    PrimeThread* second = new PrimeThread();
+    //PrimeThread third;
+    //PrimeThread fourth;
+    //PrimeThread fifth;
+    //PrimeThread sixth;
+    //PrimeThread seventh;
+    //PrimeThread eighth;
     int temp = 0;
 
     isPrime[0] = false;
@@ -86,16 +86,34 @@ void primeSieve()
     // }//end for loop
     //end old stuff
 
-    int index = 0;
+    int index = 2;
     while(index * index <= LIMIT)
     {   
 
         if(isPrime[index])
         {
+	    if(!first->isRunning())
+	    {
+		temp = index;
+		index++;
+		first = new PrimeThread(temp);
+		first->run();
+		delete first;
+	    }
+	    else if(!second->isRunning())
+	    {
+
             temp = index;
             index++;            
-            first = new PrimeThread(temp);
+            second = new PrimeThread(temp);
+	    second->run();
+	    delete second;
+	    }//end second
         }
+	else
+	{
+	    index++;	
+	}
     }//end while loop
 }//end of primeSieve
 
