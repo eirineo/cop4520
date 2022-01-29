@@ -47,7 +47,8 @@ int main()
 {
     auto start = high_resolution_clock::now();
     primeSieve();
-
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop - start);
     int count = 0;
     long int sum = 0;
     std::ofstream output;
@@ -64,8 +65,7 @@ int main()
         }
     }
 
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<milliseconds>(stop - start);
+
     output << "Time:\t" << duration.count() << "ms\n";
     output << "Total number of Primes:\t" << count << "\n";
     output << "Sum of all primes:\t" << sum << "\n";
