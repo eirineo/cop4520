@@ -2,11 +2,13 @@
 #include <math.h>
 #include <chrono>
 #include <thread>
+#include <fstream>
 #define LIMIT 100000000
 bool isPrime[LIMIT];
 
 using namespace std::chrono;
 //prototypes
+void getTopTen(std::ofstream output);
 void primeSieve();
 void removeMultiples(int index);
 
@@ -45,19 +47,42 @@ int main()
 {
     auto start = high_resolution_clock::now();
     primeSieve();
+
     int count = 0;
+    long int sum = 0;
+    std::ofstream output;
+    output.open("results.txt");
+    int index = 9;
+    int topTen[10];
+
     for(int i = 0; i < LIMIT; i++)
     {
         if(isPrime[i])
         {
             count++;
+	    sum += i;
         }
     }
-    //should 5761455
-    std::cout << count << std::endl;
+
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - start);
-    std::cout << duration.count() << "ms" << std::endl;
+    output << "Time:\t" << duration.count() << "ms\n";
+    output << "Total number of Primes:\t" << count << "\n";
+    output << "Sum of all primes:\t" << sum << "\n";
+    output << "Top ten max primes:\t";
+    for(int i = LIMIT - 1; index > 0; i--)
+    {
+	if(isPrime[i])
+	{
+	    topTen[index] = i;
+	    index--;
+	}
+    }
+    for(int i = 0; i < 10; i++)
+    {
+	 output << topTen[i] << "\t";
+    }
+    output.close();
 }//end main
 void primeSieve()
 {
