@@ -65,12 +65,12 @@ void primeSieve()
     std::fill_n(isPrime, LIMIT, true);
     PrimeThread* first = new PrimeThread();
     PrimeThread* second = new PrimeThread();
-    //PrimeThread third;
-    //PrimeThread fourth;
-    //PrimeThread fifth;
-    //PrimeThread sixth;
-    //PrimeThread seventh;
-    //PrimeThread eighth;
+    PrimeThread* third = new PrimeThread();;
+    PrimeThread* fourth = new PrimeThread();;
+    PrimeThread* fifth = new PrimeThread();;
+    PrimeThread* sixth = new PrimeThread();;
+    PrimeThread* seventh = new PrimeThread();
+    PrimeThread* eighth = new PrimeThread();;
     int temp = 0;
 
     isPrime[0] = false;
@@ -92,28 +92,76 @@ void primeSieve()
 
         if(isPrime[index])
         {
-	    if(!first->isRunning())
-	    {
-		temp = index;
-		index++;
-		first = new PrimeThread(temp);
-		first->run();
-		delete first;
-	    }
-	    else if(!second->isRunning())
-	    {
+            if(!first->isRunning())
+            {
+                temp = index;
+                index++;
+                first = new PrimeThread(temp);
+                first->run();
+                delete first;
+            }
+            else if(!second->isRunning())
+            {
+                temp = index;
+                index++;            
+                second = new PrimeThread(temp);
+                second->run();
+                delete second;
+            }//end second
+            else if(!third->isRunning())
+            {
+                temp = index;
+                index++;            
+                third = new PrimeThread(temp);
+                third->run();
+                delete third;
+            }//end third
+            else if(!fourth->isRunning())
+            {
+                temp = index;
+                index++;            
+                fourth = new PrimeThread(temp);
+                fourth->run();
+                delete fourth;
+            }//end fourth
+            else if(!fifth->isRunning())
+            {
+                temp = index;
+                index++;            
+                fifth = new PrimeThread(temp);
+                fifth->run();
+                delete fifth;
+            }//end fifth
+            else if(!sixth->isRunning())
+            {
+                temp = index;
+                index++;            
+                sixth = new PrimeThread(temp);
+                sixth->run();
+                delete sixth;
+            }//end sixth
+            else if(!seventh->isRunning())
+            {
+                temp = index;
+                index++;            
+                seventh = new PrimeThread(temp);
+                seventh->run();
+                delete seventh;
+            }//end seventh
+            else if(!eighth->isRunning())
+            {
+                temp = index;
+                index++;            
+                eighth = new PrimeThread(temp);
+                eighth->run();
+                delete eighth;
+            }//end eighth
 
-            temp = index;
-            index++;            
-            second = new PrimeThread(temp);
-	    second->run();
-	    delete second;
-	    }//end second
         }
-	else
-	{
-	    index++;	
-	}
+        else
+        {
+            index++;	
+        }
     }//end while loop
 }//end of primeSieve
 
