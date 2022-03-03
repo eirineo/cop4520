@@ -54,6 +54,7 @@ class Guest
         } //end run
         void visitLab()
         {   
+            std::cout << "does this get called\n";
             if(leader && !cupcakePresent)
             {
                 count++;
