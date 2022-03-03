@@ -11,7 +11,7 @@
 std::mutex mtx;
 bool cupcakePresent;
 int count = 0;
-
+std::string temp;
 //prototyping
 int getGuestCount();
 /*
@@ -36,6 +36,7 @@ class Guest
         void eatCupcake()
         {
             ateCupcake = true;
+	    cupcakePresent = false;
         }//end eatCupcake
         void makeLeader()
         {
@@ -54,12 +55,13 @@ class Guest
         } //end run
         void visitLab()
         {   
-            std::cout << "does this get called\n";
+            //std::cout << leader << "\t" << cupcakePresent << "\t" << ateCupcake << "\n";
             if(leader && !cupcakePresent)
             {
+
                 count++;
                 cupcakePresent = true;
-                std::cout << "Cupcake eaten\n";
+		std::cout << count << " cupcaks eaten\n";
             }
             if(!ateCupcake && cupcakePresent)
             {
@@ -80,6 +82,7 @@ int main()
     while(count != numGuests - 1)
     {
         selectedGuest = rand() % numGuests;
+	/*
 	std::cout << selectedGuest << "\t";
 	if(guests[selectedGuest].leaderStatus())
 	{
@@ -89,9 +92,10 @@ int main()
 	{
 		std::cout << "is not leader" << "\n";
 	}
-
+	*/
         guests[selectedGuest].visitLab();
-	//std::cin >> ;
+
+	//std::cin >> temp;
     }//end while
 
     std::cout << "All cupcakes eaten\n";
