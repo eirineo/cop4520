@@ -79,7 +79,7 @@ int main()
         guests[selectedGuest].visitLab();
     }//end while
 
-    std::cout << "All cupcakes eaten";
+    std::cout << "All cupcakes eaten\n";
     return 0;
 }//end main
 /////////////////////////////////////////////////////////////////////////////////////////////////////
