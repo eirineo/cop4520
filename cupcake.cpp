@@ -71,7 +71,7 @@ int main()
     Guest guests[numGuests];
     //seed random
     srand(time(NULL));
-
+    guests[0].makeLeader();
     while(count != numGuests - 1)
     {
         selectedGuest = rand() % numGuests;
