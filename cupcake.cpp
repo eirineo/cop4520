@@ -41,6 +41,10 @@ class Guest
         {
             leader = true;
         }
+	bool leaderStatus()
+	{
+		return leader;
+	}//end leader
         void run()
         {
             mtx.lock();
@@ -75,8 +79,18 @@ int main()
     while(count != numGuests - 1)
     {
         selectedGuest = rand() % numGuests;
+	std::cout << selectedGuest << "\t";
+	if(guests[selectedGuest].leaderStatus())
+	{
+		std::cout << "is a leader" << "\n";
+	}
+	else
+	{
+		std::cout << "is not leader" << "\n";
+	}
 
         guests[selectedGuest].visitLab();
+	//std::cin >> ;
     }//end while
 
     std::cout << "All cupcakes eaten\n";
