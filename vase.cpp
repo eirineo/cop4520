@@ -12,6 +12,7 @@ std::mutex mtx;
 bool sign;
 int count;
 
+int getGuestCount();
 class Guest
 {
     private:
