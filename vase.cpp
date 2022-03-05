@@ -30,15 +30,17 @@ class Guest
                 count++;
             }
         }//end seeVase
-        void lookAtSign()
+        void lookAtSign(int num)
         {
             if(sign)
             {
+                std::cout << "Allowed guest " << num << " is looking at the vase\n";
                 mtx.lock();
                 sign = false;
                 std::thread t (&Guest::seeVase, this);
                 t.join();
                 sign = true;
+                std::cout << "Allowed guest " << num << " is done looking at the vase\n";
             }
             mtx.unlock();
         } //end run
@@ -59,10 +61,10 @@ int main()
     {
         allowedGuest = rand() % numGuests;
 
-        guests[allowedGuest].lookAtSign();
+        guests[allowedGuest].lookAtSign(allowedGuest);
     }//end while
 
-    std::cout << "Guests have seen the vase\n";
+    std::cout << "All guests have seen the vase\n";
     return 0;
 }//end main
 /////////////////////////////////////////////////////////////////////////////////////////////////////
