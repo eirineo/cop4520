@@ -38,6 +38,7 @@ class Guest
                 sign = false;
                 std::thread t (&Guest::seeVase, this);
                 t.join();
+                sign = true;
             }
             mtx.unlock();
         } //end run
@@ -58,6 +59,7 @@ int main()
     {
         allowedGuest = rand() % numGuests;
 
+        guests[allowedGuest].lookAtSign();
     }//end while
 
     std::cout << "Guests have seen the vase\n";
