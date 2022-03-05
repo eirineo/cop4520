@@ -61,7 +61,6 @@ class Guest
 
                 count++;
                 cupcakePresent = true;
-		std::cout << count << " cupcaks eaten\n";
             }
             if(!ateCupcake && cupcakePresent)
             {
