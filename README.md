@@ -1,12 +1,12 @@
-To run Minotaur's Birthday Party
-g++ -pthread cupcake.cpp
-./a.out
-You will be asked to enter the number of guests
+To run Minotaur's Birthday Party <br />
+g++ -pthread cupcake.cpp<br />
+./a.out<br />
+You will be asked to enter the number of guests<br />
 
-To run Minotaur's Crystal Vase
-g++ -pthread vase.cpp
-./a.out
-You will be asked to enter the number of guests
+To run Minotaur's Crystal Vase<br />
+g++ -pthread vase.cpp<br />
+./a.out<br />
+You will be asked to enter the number of guests<br />
 
 Minotaur's Birthday Party
 
