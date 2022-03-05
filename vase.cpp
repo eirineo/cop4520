@@ -44,6 +44,7 @@ int main()
 {
     int numGuests = getGuestCount();
     sign = true;
+    count = 0;
     int selectedGuest = 0;
     Guest guests[numGuests];
     //seed random
