@@ -30,11 +30,15 @@ class Guest
                 count++;
             }
         }//end seeVase
-        void run()
+        void lookAtSign()
         {
-            mtx.lock();
-            std::thread t (&Guest::seeVase, this);
-            t.join();
+            if(sign)
+            {
+                mtx.lock();
+                sign = false;
+                std::thread t (&Guest::seeVase, this);
+                t.join();
+            }
             mtx.unlock();
         } //end run
 
@@ -45,19 +49,15 @@ int main()
     int numGuests = getGuestCount();
     sign = true;
     count = 0;
-    int selectedGuest = 0;
+    int allowedGuest = 0;
     Guest guests[numGuests];
     //seed random
     srand(time(NULL));
 
     while(count < numGuests - 1)
     {
-        if(sign)
-        {
-            selectedGuest = rand() % numGuests;
+        allowedGuest = rand() % numGuests;
 
-            guests[selectedGuest].run();            
-        }//end if
     }//end while
 
     std::cout << "Guests have seen the vase\n";
