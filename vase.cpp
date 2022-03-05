@@ -34,13 +34,11 @@ class Guest
         {
             if(sign)
             {
-                std::cout << "Allowed guest " << num << " is looking at the vase\n";
                 mtx.lock();
                 sign = false;
                 std::thread t (&Guest::seeVase, this);
                 t.join();
                 sign = true;
-                std::cout << "Allowed guest " << num << " is done looking at the vase\n";
             }
             mtx.unlock();
         } //end run
