@@ -111,10 +111,3 @@ int getGuestCount()
 
     return result;
 }//end of getGuests
-// Guest[] initializeGuests(Guest[] guests)
-// {
-//     for(int i = 0; i < guest.length; i++)
-//     {
-//         Guest = new
-//     }
-// }
